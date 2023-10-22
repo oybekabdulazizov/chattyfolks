@@ -30,7 +30,7 @@ const postsSlice = createSlice({
             title,
             content,
             userId,
-            createdAt: Date.now,
+            createdAt: Date.now(),
           },
           meta: null,
           error: null,
