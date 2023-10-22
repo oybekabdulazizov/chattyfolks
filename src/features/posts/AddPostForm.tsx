@@ -86,6 +86,7 @@ export default function AddPostForm() {
             name='userId'
             id='userId'
             onChange={handleChange}
+            value={formData.userId}
             className='bg-zinc-800 py-2 px-3 rounded-md'
           >
             <option value='' className='bg-zinc-800'></option>
