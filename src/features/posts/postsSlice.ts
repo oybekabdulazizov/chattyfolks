@@ -1,14 +1,22 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-const initialState = [
+export type post_type = {
+  id: string;
+  title: string;
+  content: string;
+  userId?: string;
+  createdAt: number;
+};
+
+const initialState: Array<post_type> = [
   {
-    id: nanoid(),
+    id: 'XgdD1BcCS3LnZdTzxWKK5',
     title: 'Testing Redux Toolkit',
     content: `I've heard good things and bad things...`,
     createdAt: 1697967657095,
   },
   {
-    id: nanoid(),
+    id: 'oARhIlca88npwOFm2o0eX',
     title: 'Slices...',
     content: `The more I say slice, the more I want pizza!`,
     createdAt: 1697967210000,
