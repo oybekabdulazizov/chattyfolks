@@ -1,31 +1,29 @@
 import { useSelector } from 'react-redux';
+
 import { selectAllPosts } from './postsSlice';
-import { selectAllUsers } from '../users/usersSlice';
-import { calculateRelativeTimes } from '../../utils';
+import PostCard from './PostCard';
 
 export default function PostsList() {
   const posts = useSelector(selectAllPosts);
-  const users: Array<any> = useSelector(selectAllUsers);
 
   return (
     <section>
-      {posts.map((post: any) => (
-        <div className='flex flex-col mb-6' key={post.id}>
-          <h2>{post.title}:</h2>
-          <p>{post.content}</p>
-          <div>
-            <p className='inline-block'>
-              by{' '}
-              {post.userId
-                ? users.find((user) => user.id === post.userId).name
-                : 'Unknown author'}
-            </p>
-            <span className='text-slate-400 text-sm ml-4'>
-              {calculateRelativeTimes(post.createdAt)}
-            </span>
-          </div>
+      <h1 className='mb-4 text-3xl'>posts</h1>
+      {posts.length > 0 ? (
+        <div className='flex flex-col gap-4'>
+          {posts.map((post: any) => (
+            <PostCard
+              title={post.title}
+              content={post.content}
+              authorId={post.userId}
+              createdAt={post.createdAt}
+              key={post.id}
+            />
+          ))}
         </div>
-      ))}
+      ) : (
+        <p className='text-gray-500 text-lg'>No posts yet.</p>
+      )}
     </section>
   );
 }
