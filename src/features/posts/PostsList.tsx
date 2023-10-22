@@ -1,17 +1,19 @@
 import { useSelector } from 'react-redux';
 
-import { selectAllPosts } from './postsSlice';
+import { post_type, selectAllPosts } from './postsSlice';
 import PostCard from './PostCard';
 
 export default function PostsList() {
-  const posts = useSelector(selectAllPosts);
+  const sortedPosts = [...useSelector(selectAllPosts)].sort(
+    (a: post_type, b: post_type) => b.createdAt - a.createdAt
+  );
 
   return (
     <section>
       <h1 className='mb-4 text-3xl'>posts</h1>
-      {posts.length > 0 ? (
+      {sortedPosts.length > 0 ? (
         <div className='flex flex-col gap-4'>
-          {posts.map((post: any) => (
+          {sortedPosts.map((post: any) => (
             <PostCard
               title={post.title}
               content={post.content}
