@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
-import { post_type, selectAllPosts } from './postsSlice';
+import { post_type, getPosts } from './postsSlice';
 import PostCard from './PostCard';
 
 export default function PostsList() {
-  const sortedPosts = [...useSelector(selectAllPosts)].sort(
+  const sortedPosts = [...useSelector(getPosts)].sort(
     (a: post_type, b: post_type) => b.createdAt - a.createdAt
   );
 

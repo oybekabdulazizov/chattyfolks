@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { selectAllUsers } from '../users/usersSlice';
+import { getUsers } from '../users/usersSlice';
 import { calculateRelativeTimes } from '../../utils';
 import userPlaceholder from '../../assets/user-placeholder.jpg';
 
@@ -17,7 +17,7 @@ export default function PostCard({
   authorId,
   createdAt,
 }: Props) {
-  const users = useSelector(selectAllUsers);
+  const users = useSelector(getUsers);
 
   return (
     <div className='w-full bg-zinc-800 py-4 px-5 rounded-md flex flex-1 flex-row gap-3'>
