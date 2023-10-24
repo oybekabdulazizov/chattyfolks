@@ -52,4 +52,8 @@ export const { addPost } = postsSlice.actions;
 
 export const getPosts = (state: any) => state.posts;
 
+export const getPostById = (state: any, postId: string) => {
+  return state.posts.find((post: post_type) => post.id === postId);
+};
+
 export default postsSlice.reducer;

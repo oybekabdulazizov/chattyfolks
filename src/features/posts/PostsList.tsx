@@ -14,13 +14,7 @@ export default function PostsList() {
       {sortedPosts.length > 0 ? (
         <div className='flex flex-col gap-4'>
           {sortedPosts.map((post: any) => (
-            <PostCard
-              title={post.title}
-              content={post.content}
-              authorId={post.userId}
-              createdAt={post.createdAt}
-              key={post.id}
-            />
+            <PostCard key={post.id} postId={post.id} />
           ))}
         </div>
       ) : (

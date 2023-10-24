@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addPost } from './postsSlice';
-import { selectAllUsers } from '../users/usersSlice';
+import { getUsers } from '../users/usersSlice';
 
 const initialValue = {
   title: '',
@@ -30,7 +30,7 @@ export default function AddPostForm() {
     userId: '',
   });
 
-  const users = useSelector(selectAllUsers);
+  const users = useSelector(getUsers);
   const dispatch = useDispatch();
 
   const handleChange = (

@@ -1,23 +1,17 @@
 import { useSelector } from 'react-redux';
 
-import { getUsers } from '../users/usersSlice';
+import { getUserById } from '../users/usersSlice';
 import { calculateRelativeTimes } from '../../utils';
 import userPlaceholder from '../../assets/user-placeholder.jpg';
+import { getPostById } from './postsSlice';
 
 type Props = {
-  title: string;
-  content: string;
-  authorId: string;
-  createdAt: Date;
+  postId: string;
 };
 
-export default function PostCard({
-  title,
-  content,
-  authorId,
-  createdAt,
-}: Props) {
-  const users = useSelector(getUsers);
+export default function PostCard({ postId }: Props) {
+  const post = useSelector((state) => getPostById(state, postId));
+  const author = useSelector((state) => getUserById(state, post.userId));
 
   return (
     <div className='w-full bg-zinc-800 py-4 px-5 rounded-md flex flex-1 flex-row gap-3'>
@@ -26,18 +20,14 @@ export default function PostCard({
       </div>
       <div className='w-full flex flex-col gap-2'>
         <div className='flex flex-row gap-2 items-center mt-1'>
-          <p>
-            {authorId
-              ? users.find((user: any) => user.id === authorId).name
-              : 'unknown author'}
-          </p>
+          <p>{author ? author.name : 'unknown author'}</p>
           <span className='text-slate-400 text-sm'>
-            {calculateRelativeTimes(createdAt)}
+            {calculateRelativeTimes(post.createdAt)}
           </span>
         </div>
         <div className=''>
-          <h2 className='w-full'>{title}:</h2>
-          <p className=''>{content}</p>
+          <h2 className='w-full'>{post.title}:</h2>
+          <p className=''>{post.content}</p>
         </div>
       </div>
     </div>
