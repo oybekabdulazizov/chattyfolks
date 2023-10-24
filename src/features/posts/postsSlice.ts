@@ -45,10 +45,24 @@ const postsSlice = createSlice({
         };
       },
     },
+    deletePost: {
+      reducer(state, { payload }) {
+        return state.filter((post) => post.id !== payload.postId);
+      },
+      prepare(postId) {
+        return {
+          payload: {
+            postId,
+          },
+          meta: null,
+          error: null,
+        };
+      },
+    },
   },
 });
 
-export const { addPost } = postsSlice.actions;
+export const { addPost, deletePost } = postsSlice.actions;
 
 export const getPosts = (state: any) => state.posts;
 
