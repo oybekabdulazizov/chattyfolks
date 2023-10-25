@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getUserById } from '../users/usersSlice';
 import { calculateRelativeTimes } from '../../utils';
-import userPlaceholder from '../../assets/user-placeholder.jpg';
 import { deletePost, getPostById } from './postsSlice';
 
 type Props = {
@@ -18,7 +17,10 @@ export default function PostCard({ postId }: Props) {
   return (
     <div className='w-full bg-zinc-800 py-4 px-5 rounded-md flex flex-1 flex-row gap-3'>
       <div className='w-12'>
-        <img src={userPlaceholder} className='rounded-full w-10 h-10' />
+        <img
+          src='./assets/user-placeholder.jpg'
+          className='rounded-full w-10 h-10'
+        />
       </div>
       <div className='w-full flex flex-col gap-2'>
         <div className='flex flex-row justify-between mt-1 items-center'>
